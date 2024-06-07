@@ -705,7 +705,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	arr(enemypicker.options)
 		.sort(function(a, b) { return a.fleet.value() - b.fleet.value(); })
 		.map(appendTo(enemypicker));
-	enemylist.parentNode.insertBefore(div(span(txt("Enemy Fleet")), enemypicker), enemylist);
+	enemylist.parentNode.insertBefore(div(span(txt("Enemy Fleet")), span(txt("Planet Influence: "), span(txt("0"),'id="enemy_influence"')), enemypicker), enemylist);
 	if(isFinite(saveData.enemySelected)) enemypicker.selectedIndex = saveData.enemySelected;
 	else if(saveData.enemySelected) enemypicker.value = saveData.enemySelected;
 	enemypicker.onchange = function() {
