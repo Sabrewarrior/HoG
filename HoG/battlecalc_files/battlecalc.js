@@ -1119,7 +1119,8 @@ document.addEventListener("DOMContentLoaded", function() {
 			}
 			else if (saveData.options["showShipsLeftOrShipsLost"] == "Show_ships_lost") {
 				var shipsLost = enemyShipsBeforeFight[input.ship.id] - enemy.ships[input.ship.id];
-				var shipsLostText = shipsLost >= 1000 ? beauty(shipsLost) : shipsLost;
+				// var shipsLostText = shipsLost >= 1000 ? beauty(shipsLost) : shipsLost;
+				var shipsLostText = shipsLost;
 				input.showShipsLeftOrShipsLost.innerText = "-" + shipsLostText;
 			}
 			else if (saveData.options["showShipsLeftOrShipsLost"] == "Show_percentage_ships_left") {
