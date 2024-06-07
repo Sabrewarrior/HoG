@@ -1094,7 +1094,8 @@ document.addEventListener("DOMContentLoaded", function() {
 			}
 			else if (saveData.options["showShipsLeftOrShipsLost"] == "Show_ships_lost") {
 				var shipsLost = playerShipsBeforeFight[input.ship.id] - warfleet.ships[input.ship.id];
-				var shipsLostText = shipsLost >= 1000 ? beauty(shipsLost) : shipsLost;
+				// var shipsLostText = shipsLost >= 1000 ? beauty(shipsLost) : shipsLost;
+				var shipsLostText = shipsLost;
 				input.showShipsLeftOrShipsLost.innerText = "-" + shipsLostText;
 			}
 			else if (saveData.options["showShipsLeftOrShipsLost"] == "Show_percentage_ships_left") {
