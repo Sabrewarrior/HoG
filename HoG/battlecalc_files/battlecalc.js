@@ -705,10 +705,32 @@ document.addEventListener("DOMContentLoaded", function() {
 	arr(enemypicker.options)
 		.sort(function(a, b) { return a.fleet.value() - b.fleet.value(); })
 		.map(appendTo(enemypicker));
-	enemylist.parentNode.insertBefore(div(span(txt("Enemy Fleet")), span(txt("Planet Influence: "), span(txt("0"),'id="enemy_influence"')), enemypicker), enemylist);
+	var enemyInf = span(txt("0"));
+	enemyInf.id = "enemyInf";
+	var enemySebInf = span(txt("0"));
+	enemySebInf.id = "enemySebInf";
+	var newInf = span(txt("0"));
+	newInf.id = "newInf";
+	
+	enemylist.parentNode.insertBefore(div(
+		div(span(txt("Planet Influence: ")), enemyInf), 
+		div(span(txt("Seb Jones Influence: ")), enemySebInf), 
+		div(span(txt("New Influence: ")), newInf), 
+		div(span(txt("Enemy Fleet ")), enemypicker)), 
+	enemylist);
 	if(isFinite(saveData.enemySelected)) enemypicker.selectedIndex = saveData.enemySelected;
 	else if(saveData.enemySelected) enemypicker.value = saveData.enemySelected;
 	enemypicker.onchange = function() {
+		var curPlanet = enemypicker.value.split("_");
+		if (curPlanet[0] !== "free"){
+			document.getElementById("enemyInf").textContent = planets[curPlanet[0]].influence;
+			document.getElementById("enemySebInf").textContent = planets[curPlanet[0]].influence * 1.3;
+			document.getElementById("newInf").textContent = parseInt(document.getElementsByName("influence")[0].value.replaceAll(",","")) + (planets[curPlanet[0]].influence * 1.3);
+		} else {
+			document.getElementById("enemyInf").textContent = "0";
+			document.getElementById("enemySebInf").textContent = "0";
+			document.getElementById("newInf").textContent = document.getElementsByName("influence")[0].value;
+		}
 		var i = enemypicker.selectedIndex;
 		if(i == -1) return;
 		var parent = enemypicker.parentNode;
